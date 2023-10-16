@@ -21,12 +21,7 @@ class ReservationsController < ApplicationController
       redirect_to :reservations
     else
      @room = @reservation.room
-     render "rooms/show"
+      render "rooms/show"
     end
   end
-
-  
-
- 
-
 end

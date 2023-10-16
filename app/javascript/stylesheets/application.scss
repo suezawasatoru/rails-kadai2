@@ -1,1 +1,11 @@
 @import "~bootstrap/scss/bootstrap.scss";
+
+.footer {
+  background: black;
+  color: white;
+  padding: 2rem 0;
+}
+
+.content {
+  min-height: 600px;
+}

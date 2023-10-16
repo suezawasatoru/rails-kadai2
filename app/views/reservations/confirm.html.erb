@@ -2,38 +2,41 @@
 <%= form_with model: @reservation do |f| %>
 <table>
   <tr>
-    <th><%= f.label :checkin, "チェックイン" %></th>
-    <td><%= f.text_field :checkin %></td>
+    <th>チェックイン</th>
+    <td><%= @reservation.checkin %></td>
   </tr>
 
   <tr>
-    <th><%= f.label :checkout, "チェックアウト" %></th>
-    <td><%= f.text_field :checkout %></td>
+    <th>チェックアウト</th>
+    <td><%= @reservation.checkout %></td>
   </tr>
 
   <tr>
-    <th><%= f.label :total_day, "日数" %></th>
+    <th>日数</th>
     <td><%= @reservation.total_day %>日</td>
   </tr>
 
   <tr>
-    <th><%= f.label :guest, "人数" %></th>
-    <td><%= f.text_field :guest %>人</td>
+    <th>人数</th>
+    <td><%= @reservation.guest %>人</td>
   </tr>
 
   <tr>
-    <th><%= f.label :total_price, "お支払い金額" %></th>
+    <th>お支払い金額</th>
     <td>¥<%= @reservation.total_price %></td>
   </tr>
 </table>
 
+<%= f.hidden_field :checkin %>
+<%= f.hidden_field :checkout %>
+<%= f.hidden_field :guest %>
 <%= f.hidden_field :user_id %>
 <%= f.hidden_field :room_id %>
 
   <div class="actions">
-    <%= link_to "戻る", :back %>
+    <%= f.submit '予約する' %>
   </div>
   <div class="actions">
-    <%= f.submit '予約する' %>
+    <%= link_to "戻る", :back %>
   </div>
 <% end %>
