@@ -1,0 +1,57 @@
+<table>
+  <tr>
+    <th>施設画像</th>
+    <% if @room.image?%>
+      <td><%= image_tag @room.image.url, size: "100x70" ,alt: "アイコン"%></td>
+      <% else%>
+      <td><%= image_tag ("noimage.png"), size: "100x70", alt: "アイコン"%></td>
+      <% end %>
+  </tr>
+  <tr>
+    <th>施設名</th>
+    <td><%= @room.name %></td>
+  </tr>
+  <tr>
+    <th>紹介文</th>
+    <td><%= @room.introduction %></td>
+  </tr>
+  <tr>
+    <th>宿泊料金</th>
+    <td>¥<%= @room.price %>~</td>
+  </tr>
+</table>
+
+<%= render "shared/error", obj: @reservation %>
+
+<%= form_with model: @reservation, url: confirm_reservations_path  do |f| %>
+<table>
+  <tr>
+    <th><%= f.label :checkin, "チェックイン" %></th>
+    <td><%= f.date_field :checkin, min: Time.zone.now %></td>
+  </tr>
+
+  <tr>
+    <th><%= f.label :checkout, "チェックアウト" %></th>
+    <td><%= f.date_field :checkout, min: Time.zone.now %></td>
+  </tr>
+
+  <tr>
+    <th><%= f.label :guest, "人数" %></th>
+    <td><%= f.text_field :guest, size: 2 %></td>
+  </tr>
+
+</table>
+
+<% if user_signed_in? %>
+<%= f.hidden_field :user_id, value: @user.id %>
+<%= f.hidden_field :room_id, value: @room.id %>
+<% end %>
+
+<div>
+ <%= f.submit "予約する"%>
+</div>
+<% end %>
+
+<div>
+  <%= link_to "戻る", :back %>
+</div>

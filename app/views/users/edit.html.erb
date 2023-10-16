@@ -1,0 +1,25 @@
+<h3>ユーザー編集</h3>
+ 
+  <%= form_with model: @user do |f| %>
+  <div class="field">
+   <%= f.label :avatar ,"プロフィール画像" %><br />
+   <%= f.file_field :avatar %>
+ </div>
+ 
+  <div class="field">
+   <%= f.label :username,"名前" %><br />
+   <%= f.text_field :username, autofocus: true %>
+ </div>
+ 
+ <div class="field">
+   <%= f.label :profile, "自己紹介" %><br />
+   <%= f.text_area :profile %>
+ </div>
+ 
+ <div class="actions">
+   <%= f.submit "更新" %>
+ </div>
+ 
+  <% end %>
+  <%= link_to "戻る", users_profile_path %>
+

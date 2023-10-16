@@ -7,10 +7,54 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <header>
+    <nav class="navbar bg-dark border-bottom  border-bottom-dark" data-bs-theme="dark">
+
+      <div class="container-fluid">
+        <%= link_to "TABI", search_rooms_path, class: "navbar-brand" %>
+        
+        <% if user_signed_in? %>
+       <div class="dropdown">
+        <a class="link-light link-offset-2 link-underline link-underline-opacity-0 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <% if @user.avatar?%>
+          <%= image_tag @user.avatar.url, size: "50x50", alt: "アイコン"%>
+          <% else %>
+          <%= image_tag ("noavatar.png"), size: "50x50", alt: "アイコン"%>
+          <% end %>
+          <%= @user.username %>
+        </a>
+        <ul class="dropdown-menu">
+          <li><%= link_to "施設の新規登録", :new_room, class: 'dropdown-item' %></li>
+          <li><%= link_to "登録済み一覧", :rooms, class: 'dropdown-item' %></li>
+          <li><%= link_to "予約済み一覧", :reservations, class: 'dropdown-item' %></li>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'dropdown-item' %></li>
+          <li><%= link_to "アカウント設定", users_profile_path, class: 'dropdown-item' %></li>
+        </ul>
+      </div>
+      <% else %>
+      <ul>
+        <li><%= link_to "サインアップ", new_user_registration_path %></li>
+        <li><%= link_to "ログイン", new_user_session_path %></li> 
+      </ul>
+      <% end %>
+      </div>
+    </nav>
+  </header>
+
   <body>
+    <div class="container-fluid">
+    <p class="notice"><%= notice %></p>
     <%= yield %>
+    </div>
   </body>
+
+  <footer>
+    <nav class="navbar p-5 bg-dark border-bottom  border-bottom-dark fixed-bottom data-bs-theme="dark">
+
+    </nav>
+  </footer>
 </html>
