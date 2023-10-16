@@ -1,0 +1,9 @@
+ja:
+   activerecord:
+     models:
+       reservation: 予約
+     attributes:
+       reservation:
+         checkin: チェックイン
+         checkout: チェックアウト
+         guest: 宿泊者
